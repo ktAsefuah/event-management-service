@@ -1,0 +1,21 @@
+@model Event
+@{ ViewData["Title"] = Model.Title; }
+
+<div class="page-header">
+  <h1>@Model.Title</h1>
+  <a asp-action="Index" class="btn btn-sm">← Back to list</a>
+</div>
+
+<div class="form-card">
+  <div class="event-summary">
+    <div class="summary-row"><span>Description</span><span>@Model.Description</span></div>
+    <div class="summary-row"><span>Date</span><span>@Model.Date.ToString("dddd, MMMM d yyyy")</span></div>
+    <div class="summary-row"><span>Time</span><span>@(new DateTime().Add(Model.Time).ToString("h:mm tt"))</span></div>
+    <div class="summary-row"><span>Location</span><span>@Model.Location</span></div>
+    <div class="summary-row"><span>Created by</span><span>@Model.CreatedBy</span></div>
+  </div>
+  <div class="form-footer">
+    <a asp-action="Edit"   asp-route-id="@Model.Id" class="btn btn-edit">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+  </div>
+</div>

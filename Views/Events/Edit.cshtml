@@ -1,0 +1,52 @@
+@model Event
+@{ ViewData["Title"] = "Edit Event"; }
+
+<div class="page-header">
+  <h1>Edit Event</h1>
+  <a asp-action="Index" class="btn btn-sm">← Back to list</a>
+</div>
+
+<div class="form-card">
+  <form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input asp-for="Id" type="hidden"/>
+    <input asp-for="CreatedBy" type="hidden"/>
+    <div asp-validation-summary="ModelOnly" class="alert alert-error"></div>
+
+    <div class="form-group">
+      <label asp-for="Title">Title *</label>
+      <input asp-for="Title" class="form-control"/>
+      <span asp-validation-for="Title" class="field-error"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Description">Description *</label>
+      <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+      <span asp-validation-for="Description" class="field-error"></span>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label asp-for="Date">Date *</label>
+        <input asp-for="Date" type="date" class="form-control"/>
+        <span asp-validation-for="Date" class="field-error"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="Time">Time *</label>
+        <input asp-for="Time" type="time" class="form-control"/>
+        <span asp-validation-for="Time" class="field-error"></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Location">Location *</label>
+      <input asp-for="Location" class="form-control"/>
+      <span asp-validation-for="Location" class="field-error"></span>
+    </div>
+
+    <div class="form-footer">
+      <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </div>
+  </form>
+</div>

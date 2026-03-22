@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@ViewData["Title"] — EventManager</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar-brand" asp-controller="Events" asp-action="Index">
+    <span class="brand-icon">◈</span> EventManager
+  </a>
+  <div class="navbar-links">
+    @if (User.Identity.IsAuthenticated)
+    {
+      <a asp-controller="Events" asp-action="Index">All Events</a>
+      <a asp-controller="Events" asp-action="Create" class="btn-nav">+ New Event</a>
+      <span class="nav-user">@User.Identity.Name</span>
+      <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn-logout">Log out</button>
+      </form>
+    }
+    else
+    {
+      <a asp-controller="Account" asp-action="Login">Log in</a>
+    }
+  </div>
+</nav>
+
+<main class="main-content">
+  @if (TempData["Success"] != null)
+  {
+    <div class="alert alert-success">@TempData["Success"]</div>
+  }
+  @RenderBody()
+</main>
+
+<footer class="footer">
+  <span>EventManager &copy; @DateTime.Now.Year</span>
+</footer>
+
+<link rel="stylesheet" href="~/css/site.css"/>
+</body>
+</html>
